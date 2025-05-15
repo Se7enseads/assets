@@ -12,10 +12,10 @@
   outputs = { nixpkgs, ... }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {inherit system;};
-      
+      pkgs = import nixpkgs { inherit system; };
+
     in {
-      homeManagerModules = import ./home.nix;
+      homeManagerModules = { wallpapers = import ./home.nix; };
 
       devShells.${system}.default = pkgs.mkShell {
         NIX_CONFIG = "extra-experimental-features = nix-command flakes";
